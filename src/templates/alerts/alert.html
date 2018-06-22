@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+        <ul class="nav nav-tabs">
+            <h1><span class="{{ 'fas fa-times-circle fa-xs set-red' if not alert.active else 'fas fa-check fa-xs set-green' }}"></span> Alert for <strong>{{ alert.item.name }} </strong></h1>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"><i class="fas fa-ellipsis-v fa-2x set-gray"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ alert.item.url }}">Visit site</a>
+                    <a class="dropdown-item" href="{{ url_for('alerts.check_price_alert', alert_id=alert._id) }}">Check alert</a>
+                    <div class="dropdown-divider"></div>
+                    {% if alert.active %}
+                    <a class="dropdown-item" href="{{ url_for('alerts.edit_alert', alert_id=alert._id) }}">Edit Alert</a>
+                    <a class="dropdown-item" href="{{ url_for('alerts.deactivate_alert', alert_id=alert._id) }}">Deactivate Alert</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{{ url_for('alerts.activate_alert', alert_id=alert._id) }}">Activate Alert</a>
+                    <a class="dropdown-item" href="{{ url_for('alerts.delete_alert', alert_id=alert._id) }}">Delete Alert</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <h4>Store: <strong>{{ store.name }}</strong></h4>
+    <p>Price limit: <strong>{{ "{0:0.2f}".format(alert.price_limit) }}</strong></p>
+    <p>Last price found: <strong>{{ "{0:0.2f}".format(alert.item.price) }}</strong></p>
+    <p>Last checked on: <strong>{{ alert.last_checked.strftime("%d-%m-%Y at %H:%M") }}</strong></p>
+</div>
+
+{% endblock %}

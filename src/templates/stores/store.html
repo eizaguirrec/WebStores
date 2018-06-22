@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <h2>Store <strong class="set-darkred">{{ store.name }} </strong></h2>
+            {% if session['email'] in config.ADMINS %}
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"><i class="fas fa-ellipsis-v fa-lg set-gray"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ url_for('stores.edit_store', store_id=store._id) }}">Edit
+                        store</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('stores.delete_store', store_id=store._id) }}">Delete
+                        store</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+        <p>URL for this store should start with <strong>{{ store.url_prefix }}</strong></p>
+    </div>
+</div>
+{% endblock %}

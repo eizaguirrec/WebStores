@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page header">
+    <h1>Edit store</h1>
+</div>
+
+<div class="form-size">
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Store name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ store.name }}">
+        </div>
+        <div class="form-group">
+            <label for="url_prefix">Store URL Prefix</label>
+            <input type="text" class="form-control" id="url_prefix" name="url_prefix" placeholder="http://..."
+                   aria-describedby="storeURLPrefixHelp" value="{{ store.url_prefix }}">
+            <span id="storeURLPrefixHelp" class="help-block font-75">What characters do URLs of all items in this online store start with?</span>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name_tag_name">Product name tag name</label>
+                    <input type="text" class="form-control" id="name_tag_name" name="name_tag_name"
+                           aria-describedby="tagNameHelp" value="{{ store.name_tag_name }}">
+                    <span id="tagNameHelp" class="help-block font-75">What is the HTML tag of the item that contains the item price? (usually 'span')</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="name_query">Product name query</label>
+                    <input type="text" class="form-control" id="name_query" name="name_query"
+                           aria-describedby="queryHelpBlock" value='{{ store.name_query | tojson }}'>
+                    <span id="queryHelpBlock" class="help-block font-75">What JSON query would we have to do to find the specific tag with the product name?</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="price_tag_name">Product price tag name</label>
+                    <input type="text" class="form-control" id="price_tag_name" name="price_tag_name"
+                           aria-describedby="NametagNameHelp" value="{{ store.price_tag_name }}">
+                    <span id="NametagNameHelp" class="help-block font-75">What is the HTML tag of the item that contains the item price? (usually 'span')</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="price_query">Product price query</label>
+                    <input type="text" class="form-control" id="price_query" name="price_query"
+                           aria-describedby="PricequeryHelpBlock" value='{{ store.price_query | tojson }}'>
+                    <span id="PricequeryHelpBlock" class="help-block">What JSON query would we have to do to find the specific tag with the price?</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark">Update store</button>
+    </form>
+
+</div>
+
+{% endblock %}

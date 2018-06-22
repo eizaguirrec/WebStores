@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4 set-darkred">Price Checker</h1>
+    <p class="lead">This is the description of the service.</p>
+    <hr class="my-4">
+
+    {% if not session['email'] %}
+    <p>Call to action.</p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Sign up</a>
+    {% endif %}
+</div>
+
+{% endblock %}
