@@ -7,3 +7,5 @@ ADMINS = frozenset([
     os.environ.get('ADMINS')
 ])
 
+print(ADMINS)
+
